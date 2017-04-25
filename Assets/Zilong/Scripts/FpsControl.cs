@@ -11,7 +11,7 @@ public class FpsControl : MonoBehaviour {
 	public Image img_Hp;
 	public float Att;
 	public GameObject Fire;
-
+	public GameObject DieImg;
 	float MaxHP;
 	// Use this for initialization
 	void Start () 
@@ -30,6 +30,9 @@ public class FpsControl : MonoBehaviour {
 		}
 		if (Input.GetKeyUp (KeyCode.F)) {
 			Fire.SetActive (false);
+		}
+		if (Hp <= 0) {
+			DieImg.SetActive (true);
 		}
 		img_Hp.fillAmount = (float)(Hp / MaxHP);
 	}
