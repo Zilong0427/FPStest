@@ -5,6 +5,8 @@ using UnityEngine;
 public class Monster_Near : Monster {
 
 	Vector3 NowForward;
+	bool isFire=false;
+	public GameObject Fire;
 	// Use this for initialization
 	protected override void Start () {
 		base.Start ();
@@ -27,6 +29,9 @@ public class Monster_Near : Monster {
 				Attack ();
 			}
 		}
+		if (isFire) {
+			HP -= 1;
+		}
 	}
 	protected override void Attack ()
 	{
@@ -42,8 +47,21 @@ public class Monster_Near : Monster {
 	{
 		//isAttack = true;
 		m_Animator.Play ("AttacK");
+		AttTarget.GetComponent<FpsControl> ().Hit (Att);
 		yield return new WaitForSeconds (3);
 		print ("att");
 		isAttack = false;
+	}
+	public void CallFire()
+	{
+		StopCoroutine (DoFire ());
+		StartCoroutine (DoFire ());
+	}
+	IEnumerator DoFire(){
+		isFire = true;
+		Fire.SetActive (true);
+		yield return new WaitForSeconds (3);
+		Fire.SetActive (false);
+		isFire=false;
 	}
 }

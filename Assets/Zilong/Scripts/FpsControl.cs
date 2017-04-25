@@ -42,4 +42,7 @@ public class FpsControl : MonoBehaviour {
 		tempBullet.GetComponent<BulletControl> ().Att = Att;
 		tempBullet.GetComponent<BulletControl> ().Shooter = this.gameObject;
 	}
+	public void Hit(float dam){
+		Hp -= dam;
+	}
 }

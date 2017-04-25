@@ -19,11 +19,9 @@ public class Fire : MonoBehaviour {
 		{
 			//_Monster.AttTarget = Shooter;
 			_Monster.Hit (Att);
+			other.GetComponent<Monster_Near> ().CallFire ();
 			//Destroy(this.gameObject);
 		}
-
-
-
 	}
 
 }
